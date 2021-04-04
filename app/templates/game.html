@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+    <br>
+    <h2>Alphabet Guessing Game (6210545491)</h2>
+    <br>
+
+    {% if game.state >= 4 %}
+        {% for each in game.hint[0:] %}
+            {{each|join('')}}
+        {% endfor %}
+    {% else %}
+        {% for each in game.input_ans[0:] %}
+            {{each|join('')}}
+        {% endfor %}
+    {% endif %}
+
+    <br>
+    <br>
+    <form action="/case-a">
+        <input type="submit" class="btn btn-primary col-md-n3" value="A">
+    </form>
+
+    <form action="/case-b">
+        <input type="submit" class="btn btn-primary col-md-n3" value="B">
+    </form>
+
+    <form action="/case-c">
+        <input type="submit" class="btn btn-primary col-md-n3" value="C">
+    </form>
+
+    <form action="/case-d">
+        <input type="submit" class="btn btn-primary col-md-n3" value="D">
+    </form>
+    <br>
+
+    <br>
+
+    {% if game.state >= 4 %}
+        <h5> count: {{ game.count }} </h5>
+        <h5> answer: {{ game.output_ans }}</h5>
+    {% endif %}
+    {% if game.state >= 8 %}
+        <h5> Congratulation! You are correct!!!</h5>
+        <a href="/" class="btn btn-secondary btn-lg" role="button" aria-disabled="true">New Game</a>
+    {% endif %}
+
+
+{% endblock %}
